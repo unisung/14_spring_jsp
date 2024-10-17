@@ -4,6 +4,7 @@ import java.net.http.HttpRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,7 +59,23 @@ public class MyController {
 		         member.setPassword(password);
 		return member;
 	}
+	
+	//@Pathvariable
+	@RequestMapping("/test3/{id}/{name}")
+	public @ResponseBody Member getMember(
+			  @PathVariable("id") String id,
+			  @PathVariable("name") String name
+			) {
+		return new Member(id,name);
+	}
+	
+	
+	
+	
+	
 }
+
+
 /*
  * HttpServletRequest
 @RequestParam  - 기본타입(byte,short,char, int,long, float, double, boolean)
@@ -70,6 +87,9 @@ public class MyController {
 @ModelAttribute - 사용자정의 DTO(UserDto, Product, Order, Member)
 
 @ModelAttribute사용조건 - 파라미터명과 필드명같아야하고, setter메소드가 있어야함.
+
+
+@Pathvariable - 파라미터값을 주소경로형태로 전달
 
 String message  = null;  message==null <- true,
 String message2 = "";    message2.isEmpty() <- true
