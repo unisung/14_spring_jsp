@@ -5,7 +5,25 @@ public class Member {
 	private String name;
 	private String password;
 	private String address;
+	private String mail;
 	
+	
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public Member(String id, String name, String password, String address, String mail) {
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.address = address;
+		this.mail = mail;
+	}
+
 	public Member(String id, String name, String password, String address) {
 		this.id = id;
 		this.name = name;

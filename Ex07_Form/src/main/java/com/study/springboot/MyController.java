@@ -69,8 +69,17 @@ public class MyController {
 		return new Member(id,name);
 	}
 	
+	//입력폼으로 forwarding처리
+	@RequestMapping(value="/test4", 
+			    method=RequestMethod.GET)
+	public String inputForm4() {
+		return "inputForm4";
+	}
 	
-	
+	@RequestMapping("/test4Proc")
+	public @ResponseBody Member getInfo(Member member) {
+		return member;
+	}
 	
 	
 }
