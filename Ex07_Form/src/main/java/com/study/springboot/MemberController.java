@@ -43,7 +43,7 @@ public class MemberController { // POJO
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
 		
-		
+		//view로 이동처리 -> forward
 		return "test1";//view페이지 경로 /WEB-INF/views/test1.jsp
 	}
 	

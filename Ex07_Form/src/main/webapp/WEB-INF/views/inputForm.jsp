@@ -18,6 +18,7 @@
 	</style>
 </head>
 <body>
+<!--action값을 전달할 uri, method 전달방식  -->
 	<form action="/test1" method="post">
 		<table>
 			<tr>
