@@ -1,0 +1,44 @@
+package com.study.springboot;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+public class MyController {
+	
+	@RequestMapping("/")
+	public @ResponseBody String root() throws Exception{
+		return "Validator (1)";
+	}
+	
+	@RequestMapping("/insertForm")
+	public String insert1() {
+		return "createPage";// /WEB-INF/views/createPage.jsp
+	}
+	
+	
+	@RequestMapping("/create")
+	public String insert2(ContentDto contentDto,
+			BindingResult result,
+			Model model) {
+		//정상처리시이동할 페이지 
+		String page = "createDonePage";//처리후 이동할 페이지
+		System.out.println(contentDto);//콘솔에 출력
+		
+		ContentValidator validator 
+		            = new ContentValidator();
+		//검증
+		validator.validate(contentDto, result);
+		//오류가발생하면 처리
+		if(result.hasErrors()) {
+			page = "createPage";//이전페이지로 되돌아가기 처리
+		}
+		// @ModelAttribute와 같다
+		model.addAttribute("dto",contentDto);
+		return page;
+	}
+}
