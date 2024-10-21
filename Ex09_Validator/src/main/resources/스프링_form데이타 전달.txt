@@ -1,0 +1,43 @@
+form으로 부터 데이터 받기
+-> view를 사용해서 -> controller로 데이타 전달
+BBSController
+MemberController
+ShopController
+
+HttpServletRequest
+@RequestParam  - 기본타입(byte,short,char, int,long, float, double, boolean)
+               - 래퍼타입(Byte, Short, Character, Integer, Long, Float, Double, Boolean)
+	       - List<String>, List<Integer> 등 간단한 리스트 타입
+@RequestParam에서 주의사항 - 파라미터를 못받는경우 오류발생
+                          -해결방법 : required=false로 지정
+ 
+@ModelAttribute - 사용자정의 DTO(UserDto, Product, Order, Member)
+
+@ModelAttribute사용조건 - 파라미터명과 필드명같아야하고, setter메소드가 있어야함.
+
+@ModelAttribute 생략가능, view로 전달시 객체명을 바꾸고싶을때 
+
+ - @ModelAttribute("변수명") 예) @ModelAttribure("dto") -> ${dto}
+
+@ModelAttribute를 생략하거나, 이름을 붙이지 않으면 클래스의 변수명으로 전달
+  예) Member -> member, ContentDto -> contentDto
+    ${member}, ${cotentDto}
+
+
+
+@Pathvariable - 파라미터값을 주소경로형태로 전달
+
+
+String message  = null;  message==null <- true,
+String message2 = "";    message2.isEmpty() <- true
+
+GET방식 요청시 파라미터를 쿼리스트링으로 같이 전달함
+http://localhost:8787/test2?id=hong&name=홍길동
+=>
+GET방식 요청시 파라미터를 경로값처럼 보냄
+http://localhost:8787/test2/hong/홍길동
+http://localhost:8787/test2/홍길동/hong
+
+DTO - Data Transfer Object
+
+ContentValidator
