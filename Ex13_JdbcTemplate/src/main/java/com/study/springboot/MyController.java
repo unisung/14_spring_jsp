@@ -34,4 +34,13 @@ public class MyController{
 		return "userlist";
 	}
 	
+	@RequestMapping("/user2")
+	public @ResponseBody List<MyUserDTO> userlistPage() {
+		//전달할 객체 리스트
+		List<MyUserDTO> list = new ArrayList<>();
+		//DAO부터 전달받은 객체들을 list에 담기
+		list = userDAO.listForBeanPropertyRowMapper();
+		return list;
+	}
+	
 }

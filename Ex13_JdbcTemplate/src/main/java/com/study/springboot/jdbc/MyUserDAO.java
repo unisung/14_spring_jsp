@@ -15,6 +15,9 @@ public class MyUserDAO {
 	
 	public List<MyUserDTO> listForBeanPropertyRowMapper(){
 		String query = "select * from myuser";
+		//test1                홍길동1
+		//test2                홍길동2
+		//test3                홍길동3
 		List<MyUserDTO> list 
 		   = jdbcTemplate.query(query, 
 				   new BeanPropertyRowMapper<MyUserDTO>(MyUserDTO.class));
