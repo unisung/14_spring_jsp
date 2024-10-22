@@ -19,18 +19,18 @@ public class MyController {
 	//bbs리스트
 	@RequestMapping("/list")
 	public String userlistPage(Model model){
-		return "/list";
+		return "list";
 	}
 	//bbs상세보기  
 	@RequestMapping("/view")
 	public String view(HttpServletRequest request,
 			         Model model){
-		return "/view";
+		return "view";
 	}
 	//작성하기 - Form으로 가기
 	@RequestMapping("/writeForm")
 	public String view(){
-		return "/writeForm";
+		return "writeForm";
 	}
 	//작성하기 - Form에서 controller로
 	@RequestMapping(value="/write", 
