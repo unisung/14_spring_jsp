@@ -1,0 +1,38 @@
+com.study.springboot.jdbc
+DTO(Data Transfer Object)객체
+MyUserDTO - 개별데이타를 한번에 묶어서 전달
+
+DAO(Data Access Object)
+MyUserDAO - 자바에서 DB에 접근하는 객체
+
+Bean - 스프링이 관리하는 객체
+(MyUserDTO)
+
+-mysql
+create table simple_bbs (
+id number(4) auto_increment primary key,
+writer varchar2(100),
+title varchar2(100),
+content varchar2(100)
+);
+
+- oracle
+create table simple_bbs (
+id number(4) primary key,
+writer varchar2(100),
+title varchar2(100),
+content varchar2(100)
+);
+
+create sequence simple_bbs_seq;
+insert into simple_bbs 
+values(simple_bbs_seq.nextval, 
+       "홍길동", "bbs1제목", "bbs내용");
+
+SimpleBbsDto
+
+bbs리스트               /list
+bbs상세보기              /view
+bbs작성하기 -form        /writeForm
+          -controller  /write 
+bbs삭제하기              /delete
