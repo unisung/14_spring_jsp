@@ -1,5 +1,8 @@
 package com.study.springboot;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.study.springboot.dao.ISimpleBbsDao;
+import com.study.springboot.dto.SimpleBbsDto;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -24,8 +28,10 @@ public class MyController {
 	//bbs리스트
 	@RequestMapping("/list")
 	public String userlistPage(Model model){
-		dao.listDao();
-		return "list";
+		List<SimpleBbsDto> list=new ArrayList<>();
+		list = dao.listDao();//요청을 dao에게 넘김
+		model.addAttribute("list", list);//모델에 저장
+		return "list"; //forward
 	}
 	//bbs상세보기  
 	@RequestMapping("/view")
@@ -44,6 +50,12 @@ public class MyController {
 			        method=RequestMethod.POST)
 	public String write(HttpServletRequest request,
 	         Model model){
+		String writer = request.getParameter("writer");
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		
+		dao.writeDao(writer, title, content);
+		
 			return "redirect:/list";
 	}
 	//삭제하기
