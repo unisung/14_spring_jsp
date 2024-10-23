@@ -62,7 +62,8 @@ public class MyController {
 	@RequestMapping("/delete")
 	public String delete(HttpServletRequest request,
 	         Model model){
-		dao.deleteDao("1");
+		String id = request.getParameter("id"); 
+		dao.deleteDao(id);
 		return "redirect:/list";
 	}
 	

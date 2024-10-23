@@ -46,7 +46,11 @@ public class SimpleBbsDao implements ISimpleBbsDao{
 	@Override
 	public int deleteDao(String id) {
 		System.out.println("deleteDao()");
-		return 0;
+		// PreparedStatement문
+		String query="delete simple_bbs where id = ?";
+		//wrapper클래스 Integer.parseInt(id) 역할: "3"(String) -> 3(int)
+		int result=template.update(query, Integer.parseInt(id) );
+		return result;
 	}
 
 }
