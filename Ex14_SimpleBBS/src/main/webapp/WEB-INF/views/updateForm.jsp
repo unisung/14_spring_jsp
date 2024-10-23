@@ -7,7 +7,8 @@
 <br><p>
 <table width="500" border="1" cellpadding="0"
           cellspacing="0">
-<form action="update" method="post">
+<form action="/update" method="post">
+<input type="hidden" name="id" value="${dto.id}">
   <tr>
    <td>작성자</td>
    <td><input name="writer" size="20" value="${dto.writer }"></td>

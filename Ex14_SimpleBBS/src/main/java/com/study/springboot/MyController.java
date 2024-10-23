@@ -59,6 +59,7 @@ public class MyController {
 	@RequestMapping(value="/update",
 			        method=RequestMethod.POST)
 	public String update(SimpleBbsDto dto) {
+		System.out.println("from form:"+dto);
 		 int result = dao.update(dto);
 		return "redirect:/list";
 	}

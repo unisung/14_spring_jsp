@@ -61,7 +61,20 @@ new BeanPropertyRowMapper<SimpleBbsDto>(SimpleBbsDto.class));
 	@Override
 	public int update(SimpleBbsDto dto) {
 		System.out.println("updateDao()");
+		System.out.println("from controller:"+dto);
+		//1.update문으로 수정
+		String query = "update simple_bbs "
+				     + " set writer=?, title=?, content=? "
+				     + " where id=?";
+		//2. dto로부터 하나씩 꺼집어내서 writer,title,content, id에 매핑
+		String id=Integer.toString(dto.getId());
+		String writer = dto.getWriter();
+		String title = dto.getTitle();
+		String content = dto.getContent();
 		
+		int result
+		     =template.update(query, writer, title, content, id);
+		System.out.println("결과:"+result);
 		return result;
 	}
 
