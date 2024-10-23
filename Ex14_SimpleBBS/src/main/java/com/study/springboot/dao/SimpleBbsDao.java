@@ -29,7 +29,12 @@ public class SimpleBbsDao implements ISimpleBbsDao{
 	@Override
 	public SimpleBbsDto viewDao(String id) {
 		System.out.println("viewDao()");
-		return null;
+		//Statement
+		String query = "select * from simple_bbs where id="+id;
+		System.out.println("쿼리문:"+query);
+		SimpleBbsDto dto=template.queryForObject(query, 
+new BeanPropertyRowMapper<SimpleBbsDto>(SimpleBbsDto.class));
+		return dto;
 	}
 
 	@Override

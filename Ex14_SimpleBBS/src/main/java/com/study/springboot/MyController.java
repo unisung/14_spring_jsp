@@ -37,7 +37,9 @@ public class MyController {
 	@RequestMapping("/view")
 	public String view(HttpServletRequest request,
 			         Model model){
-		dao.viewDao("1");
+		String sId = request.getParameter("id");//"2"
+		SimpleBbsDto dto = dao.viewDao(sId);
+		model.addAttribute("dto", dto);
 		return "view";
 	}
 	//작성하기 - Form으로 가기
@@ -60,10 +62,10 @@ public class MyController {
 	}
 	//삭제하기
 	@RequestMapping("/delete")
-	public String delete(HttpServletRequest request,
-	         Model model){
+	public String delete(HttpServletRequest request){
 		String id = request.getParameter("id"); 
-		dao.deleteDao(id);
+		int result=dao.deleteDao(id);
+		System.out.println("삭제된행 수: "+result);
 		return "redirect:/list";
 	}
 	
