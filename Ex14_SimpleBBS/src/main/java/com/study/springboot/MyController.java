@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -39,9 +41,28 @@ public class MyController {
 			         Model model){
 		String sId = request.getParameter("id");//"2"
 		SimpleBbsDto dto = dao.viewDao(sId);
+		System.out.println("조회결과:"+dto);
 		model.addAttribute("dto", dto);
 		return "view";
 	}
+	
+	@RequestMapping("/update/{id}")
+	public String updateForm(@PathVariable("id") String id,
+			                 Model model) {
+		System.out.print("id:"+id);
+		SimpleBbsDto dto = dao.viewDao(id);
+		System.out.println("조회결과:"+dto);
+		model.addAttribute("dto", dto);
+		return "updateForm";
+	}
+	
+	@RequestMapping(value="/update",
+			        method=RequestMethod.POST)
+	public String update(SimpleBbsDto dto) {
+		 int result = dao.update(dto);
+		return "redirect:/list";
+	}
+	
 	//작성하기 - Form으로 가기
 	@RequestMapping("/writeForm")
 	public String view(){

@@ -58,4 +58,11 @@ new BeanPropertyRowMapper<SimpleBbsDto>(SimpleBbsDto.class));
 		return result;
 	}
 
+	@Override
+	public int update(SimpleBbsDto dto) {
+		System.out.println("updateDao()");
+		
+		return result;
+	}
+
 }

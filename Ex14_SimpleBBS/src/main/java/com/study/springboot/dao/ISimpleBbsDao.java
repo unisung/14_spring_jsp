@@ -14,5 +14,6 @@ public interface ISimpleBbsDao {
 			            String content);
 	//삭제기능
 	public int deleteDao(String id);
+	public int update(SimpleBbsDto dto);
 	
 }
