@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -65,10 +66,14 @@ public class MyController {
 	}
 	
 	//작성하기 - Form으로 가기
+//	@RequestMapping("/writeForm")
+//	public String view(){
+//		return "writeForm";
+//	}
+	
 	@RequestMapping("/writeForm")
-	public String view(){
-		return "writeForm";
-	}
+	public void view(){}
+	
 	//작성하기 - Form에서 controller로
 	@RequestMapping(value="/write", 
 			        method=RequestMethod.POST)
