@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.study.springboot.dao.ISimpleBbsDao;
 import com.study.springboot.dto.SimpleBbsDto;
@@ -38,13 +37,17 @@ public class MyController {
 	}
 	//bbs상세보기  
 	@RequestMapping("/view")
-	public String view(HttpServletRequest request,
-			         Model model){
-		String sId = request.getParameter("id");//"2"
-		SimpleBbsDto dto = dao.viewDao(sId);
+	public void view(SimpleBbsDto dto,//@ModelAttribute("dto")로 선언하는 경우,
+			                        //view로 객체가 전달은 되지만 메소드내부에서 
+			                        //값이 setting되는 과정이 없이 전달됨(주의!)
+			         Model model//
+			         ){
+		//String sId = request.getParameter("id");//"2"
+		//SimpleBbsDto 
+		dto = dao.viewDao(Integer.toString(dto.getId()));
 		System.out.println("조회결과:"+dto);
-		model.addAttribute("dto", dto);
-		return "view";
+		model.addAttribute("dto", dto);//전달객체 저장
+		//return "view";
 	}
 	
 //	@RequestMapping("/update/{id}")
