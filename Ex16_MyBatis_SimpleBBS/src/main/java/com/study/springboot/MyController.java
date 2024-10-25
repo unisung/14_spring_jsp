@@ -1,7 +1,9 @@
 package com.study.springboot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -82,7 +84,20 @@ public class MyController {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		
-		dao.writeDao(writer, title, content);
+//		Map<String,String> map = new HashMap<>();
+//		map.put("writer", writer);
+//		map.put("title", title);
+//		map.put("content", content);
+//		
+//		int result = dao.writeDao2(map);
+		
+		SimpleBbsDto dto 
+		  = new SimpleBbsDto(0, writer, title, content);
+		
+		int result = dao.writeDao3(dto); 
+		
+		System.out.println("입력된 행 수: "+ result);
+		//dao.writeDao(writer, title, content);
 		
 			return "redirect:/list";
 	}

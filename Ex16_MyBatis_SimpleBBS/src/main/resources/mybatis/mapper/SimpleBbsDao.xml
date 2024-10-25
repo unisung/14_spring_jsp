@@ -16,7 +16,7 @@
   
   <insert id="writeDao">
    insert into simple_bbs(id, writer, title, content) 
-   values(simple_bbs_seq.nextval,#{param1},#{param2},#{param3})
+   values(simple_bbs_seq.nextval,#{writer},#{title},#{content})
   </insert>
   
   <update id="update">
@@ -30,4 +30,14 @@
   <delete id="deleteDao">
   	delete simple_bbs where id = #{id}
   </delete>
+  
+   <insert id="writeDao2">
+   insert into simple_bbs(id, writer, title, content) 
+   values(simple_bbs_seq.nextval,#{writer},#{title},#{content})
+  </insert>
+  
+  <insert id="writeDao3">
+  insert into simple_bbs(id, writer, title, content) 
+   values(simple_bbs_seq.nextval,#{writer},#{title},#{content})
+  </insert>
 </mapper>
