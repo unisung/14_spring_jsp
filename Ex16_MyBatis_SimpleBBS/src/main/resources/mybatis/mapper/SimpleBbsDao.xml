@@ -18,4 +18,16 @@
    insert into simple_bbs(id, writer, title, content) 
    values(simple_bbs_seq.nextval,#{param1},#{param2},#{param3})
   </insert>
+  
+  <update id="update">
+   update simple_bbs 
+      set writer=#{writer}, 
+          title=#{title}, 
+          content=#{content}  
+    where id=#{id}
+  </update>
+  
+  <delete id="deleteDao">
+  	delete simple_bbs where id = #{id}
+  </delete>
 </mapper>

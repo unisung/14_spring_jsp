@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,23 +50,24 @@ public class MyController {
 		//return "view";
 	}
 	
-//	@RequestMapping("/update/{id}")
-//	public String updateForm(@PathVariable("id") String id,
-//			                 Model model) {
-//		System.out.print("id:"+id);
-//		SimpleBbsDto dto = dao.viewDao(id);
-//		System.out.println("조회결과:"+dto);
-//		model.addAttribute("dto", dto);
-//		return "updateForm";
-//	}
-//	
-//	@RequestMapping(value="/update",
-//			        method=RequestMethod.POST)
-//	public String update(SimpleBbsDto dto) {
-//		System.out.println("from form:"+dto);
-//		 int result = dao.update(dto);
-//		return "redirect:/list";
-//	}
+	@RequestMapping("/update/{id}")
+	public String updateForm(@PathVariable("id") String id,
+			                 Model model) {
+		System.out.print("id:"+id);
+		SimpleBbsDto dto = dao.viewDao(id);
+		System.out.println("조회결과:"+dto);
+		model.addAttribute("dto", dto);
+		return "updateForm";
+	}
+	
+	@RequestMapping(value="/update",
+			        method=RequestMethod.POST)
+	public String update(SimpleBbsDto dto) {
+		System.out.println("from form:"+dto);
+		 int result = dao.update(dto);
+		 System.out.println("수정된 행의 수:"+result);
+		return "redirect:/list"; //리다이렉트
+	}
 	
 	//작성하기 - Form으로 가기
 	@RequestMapping("/writeForm")
@@ -86,14 +87,14 @@ public class MyController {
 			return "redirect:/list";
 	}
 	
-//	//삭제하기
-//	@RequestMapping("/delete")
-//	public String delete(HttpServletRequest request){
-//		String id = request.getParameter("id"); 
-//		int result=dao.deleteDao(id);
-//		System.out.println("삭제된행 수: "+result);
-//		return "redirect:/list";
-//	}
+	//삭제하기
+	@RequestMapping("/delete")
+	public String delete(@RequestParam("id") String id){
+		/* String id = request.getParameter("id"); */
+		int result=dao.deleteDao(id);
+		System.out.println("삭제된행 수: "+result);
+		return "redirect:/list";
+	}
 	
 	
 	

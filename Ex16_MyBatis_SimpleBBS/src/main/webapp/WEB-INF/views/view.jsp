@@ -14,7 +14,7 @@
  
  <br><p>
  <a href="/update/${dto.id}">수정</a>
- <a href="list">목록보기</a>
+ <a href="/list">목록보기</a>
  </p>
 </body>
 </html>
