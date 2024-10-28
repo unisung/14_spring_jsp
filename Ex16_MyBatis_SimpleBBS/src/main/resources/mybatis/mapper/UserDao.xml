@@ -11,4 +11,14 @@
    from emp e, dept d
   where e.deptno =d.deptno
  </select>
+ 
+ <select id="getEmpInfo" 
+         resultType="com.study.springboot.dto.UserDTO">
+   select empno, ename ename1, job, 
+        d.deptno dno1, dname dname1, loc
+   from emp e, dept d
+  where e.deptno =d.deptno    
+    and e.empno = #{empno}   
+ </select>
+ 
 </mapper>
