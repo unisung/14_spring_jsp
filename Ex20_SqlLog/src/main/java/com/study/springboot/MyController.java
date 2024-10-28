@@ -47,7 +47,6 @@ public class MyController {
 		//String sId = request.getParameter("id");//"2"
 		//SimpleBbsDto 
 		dto = dao.viewDao(Integer.toString(dto.getId()));
-		System.out.println("조회결과:"+dto);
 		model.addAttribute("dto", dto);//전달객체 저장
 		//return "view";
 	}
@@ -55,9 +54,7 @@ public class MyController {
 	@RequestMapping("/update/{id}")
 	public String updateForm(@PathVariable("id") String id,
 			                 Model model) {
-		System.out.print("id:"+id);
 		SimpleBbsDto dto = dao.viewDao(id);
-		System.out.println("조회결과:"+dto);
 		model.addAttribute("dto", dto);
 		return "updateForm";
 	}
@@ -65,9 +62,7 @@ public class MyController {
 	@RequestMapping(value="/update",
 			        method=RequestMethod.POST)
 	public String update(SimpleBbsDto dto) {
-		System.out.println("from form:"+dto);
 		 int result = dao.update(dto);
-		 System.out.println("수정된 행의 수:"+result);
 		return "redirect:/list"; //리다이렉트
 	}
 	
@@ -107,7 +102,6 @@ public class MyController {
 	public String delete(@RequestParam("id") String id){
 		/* String id = request.getParameter("id"); */
 		int result=dao.deleteDao(id);
-		System.out.println("삭제된행 수: "+result);
 		return "redirect:/list";
 	}
 	

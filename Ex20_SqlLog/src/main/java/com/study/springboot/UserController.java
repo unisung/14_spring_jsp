@@ -20,11 +20,7 @@ public class UserController {
   @RequestMapping("/employees")
   public String userlistPage(Model model) {
 	  List<UserDTO> list = dao.getEmployee();
-	  for(UserDTO dto: list) {
-		  System.out.println(dto);
-	  }
 	  model.addAttribute("employees", list);
-	  
 	  return "employeelist";
   }
   
@@ -32,12 +28,8 @@ public class UserController {
   @GetMapping("/employee/{empno}") 
   public String empInfo(@PathVariable("empno") String empno,
 		  Model model) {
-	  System.out.println("empno:"+empno);
 	  //dao로 empno에 해당하는 정보를 요청
 	  UserDTO emp= dao.getEmpInfo(empno);
-	  //정보출력
-	  System.out.println("empInfo:"+emp);
-	  
 	  model.addAttribute("empInfo", emp);
 	  return "employee";//employee.jsp
   }
