@@ -5,6 +5,7 @@
 
 <mapper namespace="com.study.springboot.dao.ITransaction1Dao">
   <insert id="pay">
-    insert into transaction1 values(#{param1},#{param2})
+    insert into transaction1  
+    values(#{param1},#{param2})
   </insert>
 </mapper>
