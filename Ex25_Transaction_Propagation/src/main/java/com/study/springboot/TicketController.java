@@ -6,12 +6,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.study.springboot.service.BuyAndLogService;
 import com.study.springboot.service.IBuyTicketService;
 
 @Controller
 public class TicketController {
+//	@Autowired
+//	private IBuyTicketService buyTicket;
 	@Autowired
-	private IBuyTicketService buyTicket;
+	BuyAndLogService buyTicketLog;
+	
 	
 	@RequestMapping("/buy_ticket")
 	public String buy_ticket() {
@@ -25,7 +29,7 @@ public class TicketController {
 			@RequestParam("error") String error,
 			Model model
 			) {
-		int nResult = buyTicket.buy(consumerId,amount, error);
+		int nResult = buyTicketLog.buy(consumerId, amount, error);
 		
 		model.addAttribute("consumerId", consumerId);
 		model.addAttribute("amount", amount);
