@@ -38,6 +38,7 @@ public class WebSecurityConfig {
 				       .usernameParameter("j_username")
 				       .passwordParameter("j_password")
 				       .permitAll());
+		
 		http.logout(logout -> logout
 				.logoutUrl("/logout") // default
 				.logoutSuccessUrl("/") //logout 후 이동할 페이지 /
