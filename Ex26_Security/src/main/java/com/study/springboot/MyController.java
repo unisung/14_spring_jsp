@@ -11,5 +11,18 @@ public class MyController {
 	public @ResponseBody String root() throws Exception{
 		return "Hello Security (1)";
 	}
+	
+	// localhost:8787/guest/welcome
+	@RequestMapping("/guest/welcome")
+	public String welcome() {return "guest/welcome1";}
+	
+	// localhost:8787/member/welcome
+	@RequestMapping("/member/welcome")
+	public String welcome2() {return "member/welcome2";}
+	
+	// localhost:8787/admin/welcome
+	@RequestMapping("/admin/welcome")
+	public String welcome3() {return "admin/welcome3";}
+	
 
 }
