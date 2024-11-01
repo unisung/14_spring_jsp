@@ -1,12 +1,16 @@
 package com.study.springboot.auth;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -54,27 +58,54 @@ public class WebSecurityConfig {
 		return http.build();
 	}
 	
-	@Bean
-	public UserDetailsService users() {
-		UserDetails user = User.builder()
-				.username("user")
-				.password(passwordEncoder().encode("1234"))
-				.roles("USER") //ROLE_USER(ROLE_자동추가) 
-				.build();
-		
-		UserDetails admin = User.builder()
-				.username("admin")
-				.password(passwordEncoder().encode("1234"))
-				.roles("USER","ADMIN")//ROLE_USER,ROLE_ADMIN(ROLE_자동추가) 
-				.build();
-		
-		// 메모리에 사용자 정보 저장
-		return new InMemoryUserDetailsManager(user,admin);
-	   }
+//	@Bean
+//	public UserDetailsService users() {
+//		UserDetails user = User.builder()
+//				.username("user")
+//				.password(passwordEncoder().encode("1234"))
+//				.roles("USER") //ROLE_USER(ROLE_자동추가) 
+//				.build();
+//		
+//		UserDetails admin = User.builder()
+//				.username("admin")
+//				.password(passwordEncoder().encode("1234"))
+//				.roles("USER","ADMIN")//ROLE_USER,ROLE_ADMIN(ROLE_자동추가) 
+//				.build();
+//		
+//		// 메모리에 사용자 정보 저장
+//		return new InMemoryUserDetailsManager(user,admin);
+//	   }
+//	
+//	//passwordEncoder()
+//	public PasswordEncoder passwordEncoder() {
+//		return PasswordEncoderFactories
+//				.createDelegatingPasswordEncoder();
+//	}
 	
-	//passwordEncoder()
-	public PasswordEncoder passwordEncoder() {
-		return PasswordEncoderFactories
-				.createDelegatingPasswordEncoder();
+	@Autowired
+	private DataSource dataSource;
+	
+	@Autowired
+	protected void configure(AuthenticationManagerBuilder auth) 
+			            throws Exception{
+		auth.jdbcAuthentication()
+		    .dataSource(dataSource)
+		    .usersByUsernameQuery("select name as userName, password, enabled "
+		    		           + " from user_list where name=?")
+		    .authoritiesByUsernameQuery("select name as userName, authority "
+		    		           + " from user_list where name=?")
+		    .passwordEncoder(new BCryptPasswordEncoder());
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
