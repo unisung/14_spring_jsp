@@ -6,8 +6,8 @@
     version="3.0">
    <persistence-unit name="JpaEx01" 
                transaction-type="RESOURCE_LOCAL">
-     <class>exam1.Member1</class>          
-               
+    <!--  <class>exam1.Member1</class>         -->  
+     <class>exam2.Member2</class>         
                
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
@@ -25,7 +25,7 @@
     <property name="hibernate.format_sql" value="true" />
     <property name="hibernate.id.new_generator_mappings" 
                     value="true" />
-    <property name="hibernate.hbm2ddl.auto" value="create" />
+    <property name="hibernate.hbm2ddl.auto" value="update" />
     
     </properties>           
    </persistence-unit>  
