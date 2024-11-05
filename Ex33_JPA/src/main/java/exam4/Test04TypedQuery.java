@@ -1,6 +1,7 @@
 package exam4;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -26,11 +27,23 @@ public class Test04TypedQuery {
      if(result.isEmpty()) {
     	 System.out.println("사용자가 없습니다.");
      }else {
-    	 for(Member4 user:result) {
-    		 System.out.printf("| %s | %s | %tY-%<tm-%<td | \n",
-    				 user.getEmail(),user.getName(), 
-    				 user.getCreateDate());
-    	 }
+//    	 for(int i=0;i<result.size();i++) {
+//    		 Member4 user = result.get(i);
+//		 System.out.printf("| %s | %s | %tY-%<tm-%<td | \n",
+//				 user.getEmail(),user.getName(), 
+//				 user.getCreateDate());
+//	 }
+    	 
+//    	 for(Member4 user:result) {
+//    		 System.out.printf("| %s | %s | %tY-%<tm-%<td | \n",
+//    				 user.getEmail(),user.getName(), 
+//    				 user.getCreateDate());
+//    	 }
+    result.forEach(user-> 
+    	     System.out.printf("| %s | %s | %tY-%<tm-%<td | \n",
+				    user.getEmail(),user.getName(), 
+			        user.getCreateDate())
+    			 );
      }
     	    
 	} catch (Exception e) {
