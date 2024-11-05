@@ -6,13 +6,21 @@ import jakarta.persistence.AccessType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
 @Entity
+@Table(name="JpaMember2")
 public class Member2 {
-	
 	@Id
-	@GeneratedValue
+	@SequenceGenerator( //create sequence JPaMember2_SEQ;
+			name = "mySequence01",
+			sequenceName= "JpaMember2_SEQ",
+			initialValue= 1,
+			allocationSize= 1
+			)
+	@GeneratedValue(generator = "mySequence01")
 	private Long id;
 	
 	@Access(AccessType.FIELD)//필드로 접근
