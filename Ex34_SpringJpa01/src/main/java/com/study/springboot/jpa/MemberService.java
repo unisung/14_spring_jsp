@@ -34,6 +34,7 @@ public class MemberService {
 	
 	//수정
 	public Member update(Member member) {
+		System.out.println("update:"+member);
 		//키 값과 같은 객체가 있으면 업데이트, 키 값과 같은 객체가 없으면 인서트
 		Member returnMember = memberRepository.save(member);
 		return returnMember;
