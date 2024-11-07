@@ -8,7 +8,7 @@
  <br><p>
  
  <a href="/insert">데이터 추가</a><br><p>
- <a href="/select?id=1">개별 조회</a><br><p>
+ <a href="/selectById?id=1">개별 조회</a><br><p>
  <a href="/selectAll">전체 조회</a><br><p>
  
 </body>

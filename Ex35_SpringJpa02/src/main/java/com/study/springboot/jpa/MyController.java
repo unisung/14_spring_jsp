@@ -1,6 +1,7 @@
 package com.study.springboot.jpa;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,10 +33,14 @@ public class MyController {
 		return "selectAll";//selectAll.jsp로 forward
 	}
 	
-	@RequestMapping("/update")
-	public String update(Member member,
+	@RequestMapping("/selectById")
+	public String selectById(@RequestParam("id") Long search,
 			             Model model) {
-		return "update"; //결과 페이지인 update.jsp로 forward
+		Optional<Member> result 
+		           = memberService.selectId(search);
+		model.addAttribute("member", result.get());
+		
+		return "select_id"; //결과 페이지인 select_id.jsp로 forward
 	}
 	
 	@RequestMapping("/delete")
