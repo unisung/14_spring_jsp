@@ -17,6 +17,8 @@
  <a href="/selectByNameLike?name=김">리스트조회 - Name Like</a><br><p>
  <a href="/selectByNameLikeNameDesc?name=김">개별조회 - Name Like Name Desc</a><br><p>
  <hr>
+ <a href="/selectByNameLikeOrder?name=김">리스트 조회 like Sort</a>
+ <a href="/selectByNameLikeOrderSort?name=김&email=email">리스트 조회 like Sort</a>
  
 </body>
 </html>

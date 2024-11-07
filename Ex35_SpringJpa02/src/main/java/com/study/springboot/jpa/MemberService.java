@@ -41,6 +41,15 @@ public class MemberService {
 	member = Member.builder().name("최영")
 		      .email("test9@test.com").build();
 	memberRepository.save(member);
+	
+	member = Member.builder().name("김종서")
+		      .email("test10@test.com").build();
+	memberRepository.save(member);
+	
+	member = Member.builder().name("김유신")
+		      .email("test11@test.com").build();
+	memberRepository.save(member);
+	
 	}
 	//전체 조회
 	public List<Member> selectAll(){
