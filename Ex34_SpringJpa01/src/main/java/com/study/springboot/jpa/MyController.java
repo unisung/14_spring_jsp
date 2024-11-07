@@ -61,9 +61,8 @@ public class MyController {
 	}
 	
 	@RequestMapping("/update")
-	public String update(Member member, Model model) {
-
-		
+	public String update(Member member,
+			             Model model) {
 		//수정 날짜 세팅
 		member.setCreateDate(LocalDate.now());
 		//수정내용을 DB에 저장후, DB에 저장된 객체를 얻기
@@ -73,6 +72,12 @@ public class MyController {
 		model.addAttribute("member",result);
 		
 		return "update"; //결과 페이지인 update.jsp로 forward
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(@RequestParam("id") Long id) {
+		memberService.delete(id);
+		return "delete"; //삭제후 delete.jsp로 forward
 	}
 	
 

@@ -11,6 +11,6 @@
  <a href="/select?id=1">개별 조회</a><br><p>
  <a href="/selectAll">전체 조회</a><br><p>
  <a href="/delete?id=2">데이터 삭제</a><br><p>
- <a href="/update?id=1&username=홍길동">데이터 수정</a><br><p>
+ <a href="/update?id=2&username=홍길동">데이터 수정</a><br><p>
 </body>
 </html>
