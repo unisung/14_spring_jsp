@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -41,7 +42,28 @@ public class MemberService {
 		      .email("test9@test.com").build();
 	memberRepository.save(member);
 	}
-	
-	//한 건 조회
-
+	//전체 조회
+	public List<Member> selectAll(){
+		return memberRepository.findAll();
+	}
+	//id조회
+	public Optional<Member> selectId(Long search){
+		return memberRepository.findById(search);
+	}
+	//이름 조회
+	public Optional<Member> selectEmail(String search){
+		return memberRepository.findByEmail(search);
+	}
+	//이름 like
+	public List<Member> selectNameLike(String search){
+		return memberRepository.findByNameLike(search);
+	}
+	//이름 like order by
+	public List<Member> selectNameLikeNameDesc(String search){
+		return memberRepository.findByNameLikeOrderByNameDesc(search);
+	}
+	//이름 like sort
+	public List<Member> selectNameLike(String search, Sort sort){
+		return memberRepository.findByNameLike(search,sort);
+	}
 }
