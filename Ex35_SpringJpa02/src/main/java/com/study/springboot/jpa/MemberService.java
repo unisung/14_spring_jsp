@@ -51,6 +51,10 @@ public class MemberService {
 		return memberRepository.findById(search);
 	}
 	//이름 조회
+	public Optional<Member> selectName(String search){
+	    return memberRepository.findByName(search);
+	}
+	//이메일 조회
 	public Optional<Member> selectEmail(String search){
 		return memberRepository.findByEmail(search);
 	}

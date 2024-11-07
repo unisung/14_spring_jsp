@@ -43,6 +43,17 @@ public class MyController {
 		return "select_id"; //결과 페이지인 select_id.jsp로 forward
 	}
 	
+	@RequestMapping("/selectByName")
+	public String selectByName(@RequestParam("name") String search,
+			             Model model) {
+		Optional<Member> result 
+		           = memberService.selectName(search);
+		model.addAttribute("member", result.get());
+		
+		return "select_name"; //결과 페이지인 select_name.jsp로 forward
+	}
+	
+	
 	@RequestMapping("/delete")
 	public String delete(@RequestParam("id") Long id) {
 		return "delete"; //삭제후 delete.jsp로 forward
