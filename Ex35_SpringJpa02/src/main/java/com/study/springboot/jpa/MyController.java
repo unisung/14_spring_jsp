@@ -63,8 +63,14 @@ public class MyController {
 		return "select_email"; //결과 페이지인 select_name.jsp로 forward
 	}
 	
-	@RequestMapping("/delete")
-	public String delete(@RequestParam("id") Long id) {
-		return "delete"; //삭제후 delete.jsp로 forward
+	@RequestMapping("/selectByNameLike")
+	public String selectByNameLike(@RequestParam("name") String search,
+			             Model model) {
+		String name = "%"+search + "%";// "김" -> "%김%"
+		List<Member> result
+		           = memberService.selectNameLike(name);
+		model.addAttribute("members", result);
+		
+		return "select_name_list"; //결과 페이지인 select_name_list.jsp로 forward
 	}
 }
