@@ -5,11 +5,9 @@
 </head>
 <body>
 
-<%="Spring JPA #01 - insert" %>
+<%="Spring JPA #02 - insert" %>
 <br>
 
-아이디: ${member.id }<br>
-이름:  ${member.username }<br>
-날짜:  ${member.createDate }<br>
+<h3>데이터 추가 완료</h3>
 </body>
 </html>

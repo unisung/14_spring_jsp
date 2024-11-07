@@ -1,5 +1,7 @@
 package com.study.springboot.jpa;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,20 +19,16 @@ public class MyController {
 	}
 	
 	@RequestMapping("/insert")
-	public String insert(@RequestParam("username") 
-	                                String username,
+	public String insert(Member member, 
 			              Model model) {
-	  return "insert";// insert.jsp페이지로 forwarding
-	}
-	
-	@RequestMapping("/select")
-	public String select(@RequestParam("id") Long id, 
-			Model model) {
-		return "select"; //select.jsp로 forward
+	    memberService.insert();
+		return "insert";// insert.jsp페이지로 forwarding
 	}
 	
 	@RequestMapping("/selectAll")
 	public String selectAll(Model model) {
+		List<Member> result = memberService.selectAll();
+		model.addAttribute("members", result);
 		return "selectAll";//selectAll.jsp로 forward
 	}
 	
