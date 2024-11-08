@@ -93,6 +93,23 @@ public class MyController {
 	    model.addAttribute("numberOfElements", numberOfElements);
 	    
 		return "select_name_list_2";//select_name_list_2.jsp로 forward.
+	}
+	
+	@RequestMapping("/selectByNameLike4")
+	public String selectByNameLike4(@RequestParam("name") String search,  
+			                       Model model){
+		
+		System.out.println("***4:" + search + "***");
+		String name = "%" + search + "%";
+	   
+	    List<Member> result 
+	              = memberService.selectMembers4(name);
+	   
+	    //모델에 저장하여 forward되는 페이지로 전달
+	    model.addAttribute("members", result);
+	    
+		return "select_name_list_1";//select_name_list_1.jsp로 forward.
 		
 	}
+	
 }
