@@ -14,6 +14,8 @@
  <a href="/selectByNameLike?name=test&page=3">
   Name Like 조회 : 3페이지</a><br><p>
  <hr>
+ <a href="/selectByNameLike?name=test&page=4">
+  Name Like 조회 : 4페이지</a><br><p>
  
  
 </body>

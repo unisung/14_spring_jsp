@@ -60,7 +60,4 @@ public class MyController {
 		return "select_name_list";//select_name_list.jsp로 forward.
 		
 	}
-	
-	
-	
 }
