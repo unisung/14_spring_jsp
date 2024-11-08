@@ -3,9 +3,6 @@ package com.study.springboot.jpa;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +29,24 @@ public class MyController {
 	   
 	    List<Member> result 
 	              = memberService.selectMembers1(name);
+	   
+	    //모델에 저장하여 forward되는 페이지로 전달
+	    model.addAttribute("members", result);
+	    
+		return "select_name_list_1";//select_name_list_1.jsp로 forward.
+		
+	}
+	
+	@RequestMapping("/selectByNameLike2")
+	public String selectByNameLike2(@RequestParam("name") String search,  
+			                       Model model){
+		
+		System.out.println("***2" + search + "***");
+		String name = "%" + search + "%";
+		Sort sort = Sort.by(Sort.Order.asc("id"));
+	   
+	    List<Member> result 
+	              = memberService.selectMembers2(name,sort);
 	   
 	    //모델에 저장하여 forward되는 페이지로 전달
 	    model.addAttribute("members", result);
