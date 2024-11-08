@@ -2,6 +2,7 @@ package com.study.springboot.jpa;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,7 +25,7 @@ public interface MemberRepository
 			                  Sort sort);
 	//조회결과 Pageable객체 정보로 페이징 처리
 	@Query("select m from JPAMEMBER03 m where m.name like :name1")
-	List<Member> findMembers(@Param("name1") String name2,
+	Page<Member> findMembers(@Param("name1") String name2,
                              Pageable pageable);
 	//Native 쿼리문 사용
 	//일반 SQL: 테이블명 대소문자 구분안함.
