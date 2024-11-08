@@ -21,7 +21,7 @@ public class MyController {
 	public String root() throws Exception{
 		return "menu"; //menu.jsp로 forward
 	}
-	
+
 	@RequestMapping("/selectByNameLike")
 	public String selectByNameLike(@RequestParam("name") String search,
 			                      @RequestParam("page") String page,

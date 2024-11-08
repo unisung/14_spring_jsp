@@ -1,13 +1,17 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
-<!DOCTYPE html><html><head>
-<meta charset="UTF-8">
-<title>입력 결과</title>
-</head>
-<body>
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<title>입력 결과</title></head><body>
 
-<%="Spring JPA #02 - select Name like list" %>
-<br>
+<%="Spring JPA #03 - Name like Paging" %>
+<br><p>
+<hr>
+총글의 갯수: ${totalEements}<br>
+총 페이지 : ${totalPages}<br>
+페이지당 글 갯수(size) : ${size}<br>
+페이지번호:${pageNumber}<br>
+nuberOfElements : ${numberOfElements}<br>
+<hr>
 
 <table border="1">
 <tr>
