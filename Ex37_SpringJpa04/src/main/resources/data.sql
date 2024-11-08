@@ -1,0 +1,17 @@
+insert into JPAMEMBER03 values (21, 'test1@test.com', 'test1');
+insert into JPAMEMBER03 values (22, 'test2@test.com', 'test2');
+insert into JPAMEMBER03 values (23, 'test3@test.com', 'test3');
+insert into JPAMEMBER03 values (24, 'test4@test.com', 'test4');
+insert into JPAMEMBER03 values (25, 'test5@test.com', 'test5');
+insert into JPAMEMBER03 values (26, 'test6@test.com', 'test6');
+insert into JPAMEMBER03 values (27, 'test7@test.com', 'test7');
+insert into JPAMEMBER03 values (28, 'test8@test.com', 'test8');
+insert into JPAMEMBER03 values (29, 'test9@test.com', 'test9');
+insert into JPAMEMBER03 values (30, 'test10@test.com', 'test10');
+insert into JPAMEMBER03 values (31, 'test11@test.com', 'test11');
+insert into JPAMEMBER03 values (32, 'test12@test.com', 'test12');
+insert into JPAMEMBER03 values (33, 'test13@test.com', 'test13');
+insert into JPAMEMBER03 values (34, 'test14@test.com', 'test14');
+insert into JPAMEMBER03 values (35, 'test15@test.com', 'test15');
+insert into JPAMEMBER03 values (36, 'test16@test.com', 'test16');
+commit;
