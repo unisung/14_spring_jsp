@@ -6,9 +6,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MyController {
-
+	
 	@GetMapping("/")
 	public @ResponseBody String root() {
 		return "hello";
 	}
+	
+	@GetMapping("/jqa4") // jqa4.jsp
+	public void jqa4() {}
+	
+	
+
 }

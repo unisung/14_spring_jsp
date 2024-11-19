@@ -9,7 +9,7 @@
 <script>
 $(function() {
 	$.ajax({
-		url:"http://myhome.chosun.com/rss/www_section_rss.xml",
+		url:"/rss",//localhost:8787/rss
 		dataType:"xml",
 		success:function(data) {
 			console.log(data);
