@@ -18,5 +18,7 @@ public class MyController {
 	@GetMapping("/jqa5") // jqa5.jsp
 	public void jqa5() {}
 	
+	@GetMapping("/jqa6") // jqa6.jsp
+	public void jqa6() {}
 
 }
