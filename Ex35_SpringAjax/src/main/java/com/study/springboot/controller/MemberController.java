@@ -51,7 +51,7 @@ public class MemberController {
 		put("korean","박부장"); 
 	 }};
 	 
-	@PostMapping("/member_logon_ok")
+	@PostMapping("/member_login_ok")
 	public ResponseEntity<Map<String, String>> login(
 			@RequestParam("user_id") String user_id,
 			@RequestParam("user_pw") String user_pw){

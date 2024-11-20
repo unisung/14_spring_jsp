@@ -12,20 +12,24 @@ $(function() {
   $frm.on("submit", function(e) {
     e.preventDefault();
     var myData = $frm.serialize();//?id=korean&pw=1234
+        console.log("myData",myData);
 
     $.ajax({
       type: "POST",
       url: $frm.attr("action"),
       data: myData,
+      
       success:function(res) {
         if(res) {
-         var jsonData = JSON.parse(res);//{'user_name':'박부장','user_id':'park'}
-         var message = jsonData.user_name + 
-         "( " + jsonData.user_id + " )" 
+         //var jsonData = JSON.parse(res);//{'user_name':'박부장','user_id':'park'}
+         var message = res.user_name + 
+         "( " + res.user_id + " )" 
          + "님 반갑습니다";
          $(".login_wrap").html(message);
         }
       }
+    
+    
     });
   });
 });
