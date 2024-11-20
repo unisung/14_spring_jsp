@@ -1,9 +1,13 @@
 package com.study.springboot.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,6 +39,33 @@ public class MemberController {
 	
 	return callback +"("+jsonData+")";//callback(jsonData);
 	//myFnc(jsonData);
+	}
+	//샘플 회원 데이터
+	private static final Map<String, String> members 
+	 = new HashMap<>() {{
+		put("korean","12345"); 
+	 }};
+
+	 private static final Map<String, String> memberNames 
+	 = new HashMap<>() {{
+		put("korean","박부장"); 
+	 }};
+	 
+	@PostMapping("/member_logon_ok")
+	public ResponseEntity<Map<String, String>> login(
+			@RequestParam("user_id") String user_id,
+			@RequestParam("user_pw") String user_pw){
+		   //아이디와 비밀번호 확인
+		if(members.containsKey(user_id) 
+				&& members.get(user_id).equals(user_pw)) {
+			Map<String, String> response = new HashMap<>();
+			response.put("user_id", user_id);//"user_id","korean"			
+			response.put("user_name", memberNames.get(user_id));//"user_name":"박부장"
+
+		  return ResponseEntity.ok(response);//로그인성공 
+		  //response정보를 응답으로 전달하면서 상태값을 200 ok로 넘김
+	     } 
+		 return ResponseEntity.status(401).build();//로그인 실패
 	}
 	/*	
 JSON vs JSONP 비교
