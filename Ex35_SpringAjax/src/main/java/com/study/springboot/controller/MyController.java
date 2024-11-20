@@ -24,5 +24,11 @@ public class MyController {
 	@GetMapping("/jqa7") // jqa7.jsp
 	public void jqa7() {}
 	
+	@GetMapping("/memberLogon") //
+	public String memberLogon() {
+		return "member_logon";//member_logon.jsp
+	}
+	
+	
 
 }
