@@ -1,111 +1,92 @@
 package com.example.simplebbs.article;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Article {
-	private Long id;
-	private String subject;
-	private String contents;
-	private String author;
-	private Long userId;
-	private int commentCount; //댓글 수 필드
-	
-	private Instant createdAt;//생성일시
-	private Instant updatedAt;//수정일시
-	
-	public Article(String subject, String contents, 
-			       String author, Long userId, 
-			       int commentCount) {
+    private Long id;
+    private String subject;
+    private String contents;
+    private String author;
+    private Long userId;
+    private int commentCount; // 댓글 수 필드 추가
+
+   
+    private Instant createdAt;
+    private Instant updatedAt;
+
+    // 모든 필수 필드를 포함한 생성자
+    public Article(String subject, String contents, String author, Long userId) {
+        this.subject = subject;
+        this.contents = contents;
+        this.author = author;
+        this.userId = userId;
+        this.createdAt = Instant.now();
+        this.updatedAt = Instant.now();
+    }
+    
+    
+
+    public Article(String subject, String contents, String author) {
 		this.subject = subject;
 		this.contents = contents;
 		this.author = author;
-		this.userId = userId;
-		this.commentCount = commentCount;
-		this.createdAt = Instant.now();
-		this.updatedAt = Instant.now();
 	}
 
-	public Article() {}
-	
-	//getters/setters
-	public Long getId() {
-		return id;
-	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
-	public String getSubject() {
-		return subject;
-	}
+	public boolean isAuthor(Long userId) {
+        return Objects.equals(this.userId, userId);
+    }
 
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
+  
 
-	public String getContents() {
-		return contents;
-	}
+    // Getter 메서드
+    public Long getId() {
+        return id;
+    }
 
-	public void setContents(String contents) {
-		this.contents = contents;
-	}
+    public String getSubject() {
+        return subject;
+    }
 
-	public String getAuthor() {
-		return author;
-	}
+    public String getContents() {
+        return contents;
+    }
 
-	public void setAuthor(String author) {
-		this.author = author;
-	}
+    public String getAuthor() {
+        return author;
+    }
 
-	public Long getUserId() {
-		return userId;
-	}
+    public Long getUserId() {
+        return userId;
+    }
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
 
-	public int getCommentCount() {
-		return commentCount;
-	}
+    public Instant getUpdatedAt() {
+        return updatedAt;
+    }
 
-	public void setCommentCount(int commentCount) {
-		this.commentCount = commentCount;
-	}
+    @Override
+    public String toString() {
+        return "Article{" +
+                "subject='" + subject + '\'' +
+                ", contents='" + contents + '\'' +
+                ", author='" + author + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", id=" + id +
+                '}';
+    }
 
-	public Instant getCreatedAt() {
-		return createdAt;
-	}
+    public int getCommentCount() {
+        return commentCount;
+    }
 
-	public void setCreatedAt(Instant createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Instant getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Instant updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
-	@Override
-	public String toString() {
-		return "Article [id=" + id + ", subject=" + subject + ", contents=" + contents + ", author=" + author
-				+ ", userId=" + userId + ", commentCount=" + commentCount + ", createdAt=" + createdAt + ", updatedAt="
-				+ updatedAt + "]";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
