@@ -9,19 +9,23 @@
 <div class="container mt-5">
 	<h1 class="mb-4">글 쓰기</h1>
 	<form th:action="@{/write}"
+	      th:object="${articleInput}"   
 	         method="post">
 		<div class="mb-3">
 		  <label for="subject" class="form-label">제목</label>
-		  <input id="subject" name="subject" class="form-control">
+		  <input id="subject" th:field="*{subject}" class="form-control">
+		  <div th:errors="*{subject}" class="alert alert-danger mt-2"></div>
 		</div>
 		<div class="mb-3">
 		  <label for="author" class="form-label">작성자</label>
-		  <input id="author"  name="author" class="form-control">
+		  <input id="author"  th:field="*{author}" class="form-control">
+		  <div th:errors="*{author}"  class="alert alert-danger mt-2"></div>
 		</div>
 		<div class="mb-3">
 		  <label for="contents" class="form-label">내용</label>
-		  <textarea id="contents" name="contents" 
+		  <textarea id="contents" th:field="*{content}" 
 		      rows="5" class="form-control"></textarea>
+		  <div th:errors="*{content}"  class="alert alert-danger mt-2"></div>
 		</div>
 		<button type="submit" class="btn btn-primary">작성</button>
 	</form>
