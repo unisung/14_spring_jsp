@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS `article`;
 CREATE TABLE `article` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `subject` varchar(255) NOT NULL,
-  `contents` text NOT NULL,
+  `content` text NOT NULL,
   `author` varchar(255) NOT NULL,
   `user_id` bigint(20) NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
