@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.simplebbs.article.Article;
@@ -24,14 +25,14 @@ public class ArticleController {
 	@GetMapping("/write")
     public String writePage(Model model) {
         model.addAttribute("articleInput", new ArticleInput());
-        return "write";
+        return "article/write";
     }
 
     @PostMapping("/write")
     public String submitForm(@Validated @ModelAttribute ArticleInput articleInput,
                         BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "write";
+            return "article/write";
         }
 
         // ArticleService의 writeArticle 메소드 호출
@@ -45,8 +46,16 @@ public class ArticleController {
        List<Article> articles 
           = articleService.getAllArticles();
        model.addAttribute("articles", articles);
-        return "list";//list.html
+        return "article/list";//list.html
     }
 
+    @GetMapping("/article/{id}")
+    public String article(@PathVariable(value = "id") Long id, 
+    		Model model) {
+    	Article article = articleService.getById(id);
+    	model.addAttribute("article", article);
+    	return "article/view"; //view.html
+    	
+    }
    
 }
