@@ -16,5 +16,16 @@
  <select id="findById">
   select * from article where id=#{id}
  </select>
+ 
+ <select id="getArticleById">
+  select * from article where id=#{id}
+ </select>
+ 
+ <update id="updateArticle">
+ 	update article
+ 	   set subject = #{subject},
+ 	       content = #{content}
+ 	 where id = #{id}
+ </update>
 
 </mapper>

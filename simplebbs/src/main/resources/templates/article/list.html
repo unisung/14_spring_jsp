@@ -50,7 +50,7 @@
       <td th:text="${#temporals.format(article.createdAt,'yyyy-MM-dd HH:mm:ss')}">2024-06-26</td>
       <td>
         <!-- 글 수정, 삭제 버튼 추가 -->
-        <a class="btn btn-sm btn-warning">수정</a>
+        <a th:href="@{/edit/{id}(id=${article.id})}" class="btn btn-sm btn-warning">수정</a>
         <form method="post" style="display:inline">
         <button type="submit" class="btn btn-sm btn-danger">삭제</button>
         </form>

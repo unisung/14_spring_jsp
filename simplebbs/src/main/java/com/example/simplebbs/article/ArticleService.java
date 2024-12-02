@@ -28,5 +28,13 @@ public class ArticleService {
 		Optional<Article> article = articleMapper.findById(id);
 		return article.orElseThrow();
 	}
+
+	public void updateArticle(Long id, String subject, String content, String author) {
+		Article article = articleMapper.getArticleById(id);
+		if(article == null ) {
+			throw new IllegalStateException("글을 수정할 수 없습니다.");
+		}
+		articleMapper.updateArticle(id,subject,content);
+	}
 	
 }

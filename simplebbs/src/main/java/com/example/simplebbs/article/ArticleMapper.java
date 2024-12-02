@@ -10,5 +10,8 @@ public interface ArticleMapper {
 	void insertArticle(Article article);
 	List<Article> findAll();
 	Optional<Article> findById(Long id);
+	Article getArticleById(Long id);
+	void updateArticle(Long id, String subject, String content);
+	
 
 }
