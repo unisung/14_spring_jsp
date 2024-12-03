@@ -20,6 +20,7 @@ import java.util.Collections;
 public class AuthenticatedUser implements UserDetails {
     private String id;
     private String password;
+    private String memberName;
 
 
     @Override

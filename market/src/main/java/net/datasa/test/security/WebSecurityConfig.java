@@ -34,8 +34,8 @@ public class WebSecurityConfig {
             .httpBasic(Customizer.withDefaults())
             .formLogin(formLogin -> formLogin
                     .loginPage("/member/loginForm")//로그인 폼페이지
-//                    .usernameParameter("id")
-//                    .passwordParameter("password")
+                    .usernameParameter("id")
+                    .passwordParameter("password")
                     .loginProcessingUrl("/member/login")//로그인 처리페이지
                     .defaultSuccessUrl("/", true)//로그인성공 후 이동할 페이지 
                     .permitAll()
