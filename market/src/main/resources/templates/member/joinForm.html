@@ -9,8 +9,28 @@
 	<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
 	<script>
 		$(document).ready(function() {
-
-		
+			//가입폼의 submit 버튼을 클릭하면 실행됨
+			$('#joinForm').submit(function(){
+				//아이디는 3 ~ 10자로 입력해야 한다.
+				if ($('#memberId').val().length < 3 
+						|| $('#memberId').val().length > 10) {
+					alert('ID는 3 ~ 10자로 입력하세요.');
+					return false;
+				}
+				//비번은 3 ~ 10자로 입력해야 한다.
+				if ($('#memberPw').val().length < 3 
+						|| $('#memberPw').val().length > 10) {
+					alert('비밀번호는 3 ~ 10자로 입력하세요.');
+					return false;
+				}
+				if ($('#memberName').val() == '' 
+						|| $('#memberName').val().length == 0) {
+					alert('이름을 입력하세요.');
+					return false;
+				}
+				//서버로 폼을 전송
+				return true;
+			});
 		});
 	</script>
 </head>
