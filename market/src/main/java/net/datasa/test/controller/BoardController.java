@@ -31,6 +31,14 @@ public class BoardController {
     public String list() {
     	return "board/list";
     }
+    /**
+     * 글쓰기 폼으로 이동
+     * @return 글쓰기폼 HTML 파일
+     */
+    @GetMapping("write")
+    public String write() {
+    	return "board/writeForm";
+    }
 
    
 }
