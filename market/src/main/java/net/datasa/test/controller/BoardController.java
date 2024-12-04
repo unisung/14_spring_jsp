@@ -60,6 +60,36 @@ public class BoardController {
     	model.addAttribute("board", boardDTO);
     	return "board/read";
     }
+    
+    /**
+     * 판매글 삭제
+     * @param boardNum  삭제할 글 번호
+     * @param user      사용자 정보
+     * @return          글목록으로 리다이렉트
+     */
+    @GetMapping("delete")
+    public String delete(@RequestParam("boardNum") int boardNum
+            , @AuthenticationPrincipal AuthenticatedUser user) {
+        log.debug("삭제할 판매글 : {}, 사용자 아이디 : {}", boardNum, user.getUsername());
+        boardService.delete(boardNum, user.getUsername());
+        return "redirect:list";
+    }
+    /**
+     * 구매
+     * @param boardNum  구매할 글 번호
+     * @param user      구매자 정보
+     * @return          판매글로 리다이렉트
+     */
+    @GetMapping("buy")
+    public String buy(@RequestParam("boardNum") int boardNum
+            , @AuthenticationPrincipal AuthenticatedUser user) {
+        log.debug("구매할 판매글 : {}, 구매자 아이디 : {}", boardNum, user.getUsername());
+        boardService.buy(boardNum, user.getUsername());
+        return "redirect:read?boardNum=" + boardNum;
+    }
+    
+    
+    
 
    
 }

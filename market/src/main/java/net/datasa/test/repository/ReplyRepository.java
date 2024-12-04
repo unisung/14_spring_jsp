@@ -15,5 +15,7 @@ import java.util.List;
 public interface ReplyRepository 
  extends JpaRepository<ReplyEntity, Integer> {
 
+	List<ReplyEntity> findByBoard_BoardNum(int boardNum, Sort sort);
+
 
 }

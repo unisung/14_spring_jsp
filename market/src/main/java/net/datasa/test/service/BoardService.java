@@ -3,14 +3,17 @@ package net.datasa.test.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import net.datasa.test.domain.dto.BoardDTO;
+import net.datasa.test.domain.dto.ReplyDTO;
 import net.datasa.test.domain.entity.BoardEntity;
 import net.datasa.test.domain.entity.MemberEntity;
+import net.datasa.test.domain.entity.ReplyEntity;
 import net.datasa.test.repository.BoardRepository;
 import net.datasa.test.repository.MemberRepository;
 import net.datasa.test.repository.ReplyRepository;
@@ -97,4 +100,86 @@ public class BoardService {
 				
 		return boardDTO;
 	}
+
+	public void delete(int boardNum, String username) {
+	MemberEntity memberEntity = memberRepository.findById(username)
+	         .orElseThrow(() -> new EntityNotFoundException("사용자 정보가 없습니다."));
+	
+	BoardEntity boardEntity = boardRepository.findById(boardNum)
+            .orElseThrow(() -> new EntityNotFoundException("글이 없습니다."));	
+	
+	if (!username.equals(memberEntity.getMemberId())) {
+        throw new RuntimeException("삭제 권한이 없습니다.");
+    } 
+	
+	boardRepository.delete(boardEntity);
+	
+	}
+
+	public void buy(int boardNum, String username) {
+		MemberEntity memberEntity = memberRepository.findById(username)
+		         .orElseThrow(() -> new EntityNotFoundException("구매자 id가 없습니다."));
+		
+		BoardEntity boardEntity = boardRepository.findById(boardNum)
+	            .orElseThrow(() -> new EntityNotFoundException("판매글이 없습니다."));	
+		
+		 boardEntity.setBuyer(memberEntity);
+	     boardEntity.setSoldout(true);
+	}
+	
+	 /**
+     * 리플 저장
+     * @param replyDTO 저장할 리플 정보
+     */
+    public void replyWrite(ReplyDTO replyDTO) {
+        MemberEntity memberEntity = memberRepository.findById(replyDTO.getMemberId())
+                .orElseThrow(() -> new EntityNotFoundException("사용자 정보가 없습니다."));
+
+        BoardEntity boardEntity = boardRepository.findById(replyDTO.getBoardNum())
+                .orElseThrow(() -> new EntityNotFoundException("게시글 정보가 없습니다."));
+
+        ReplyEntity replyEntity = ReplyEntity.builder()
+                .board(boardEntity)
+                .member(memberEntity)
+                .replyText(replyDTO.getReplyText())
+                .build();
+
+        replyRepository.save(replyEntity);
+    }
+
+    /**
+     * 리플 목록
+     * @param boardNum 리플 조회할 본문 글번호
+     * @return 리플 목록
+     */
+    public List<ReplyDTO> getReplyList(int boardNum) {
+        Sort sort = Sort.by(Sort.Direction.ASC, "replyNum");
+        List<ReplyEntity> replyEntityList = replyRepository.findByBoard_BoardNum(boardNum, sort);
+        List<ReplyDTO> replyDTOList = new ArrayList<ReplyDTO>();
+
+        for (ReplyEntity entity : replyEntityList) {
+            ReplyDTO dto = ReplyDTO.builder()
+                    .replyNum(entity.getReplyNum())
+                    .boardNum(entity.getBoard().getBoardNum())
+                    .memberId(entity.getMember().getMemberId())
+                    .replyText(entity.getReplyText())
+                    .build();
+            replyDTOList.add(dto);
+        }
+        return replyDTOList;
+    }
+
+    /**
+     * 리플 삭제
+     * @param replyDTO 삭제할 리플 정보
+     */
+    public void replyDelete(ReplyDTO replyDTO) {
+        ReplyEntity replyEntity = replyRepository.findById(replyDTO.getReplyNum())
+                .orElseThrow(() -> new EntityNotFoundException("리플 정보가 없습니다."));
+
+        if (!replyDTO.getMemberId().equals(replyEntity.getMember().getMemberId())) {
+            throw new RuntimeException("삭제 권한이 없습니다.");
+        }
+        replyRepository.delete(replyEntity);
+    }
 }

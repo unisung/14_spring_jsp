@@ -42,5 +42,6 @@ public class BoardRestController {
 		return ResponseEntity.ok(list);//status-200, 결과값-list		
 	}
 
+	
   
 }
