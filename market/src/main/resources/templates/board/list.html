@@ -16,6 +16,40 @@
 </head>
 <body>
 	<h1>[ 거래 게시판 ]</h1>
+	<table>
+	<thead>
+	<tr>
+		<td colspan="6">
+		  <button id="writeButton">글쓰기</button>
+		</td>
+		</tr>
+		<tr>
+		  <td>검색조건</td>
+		  <td colspan="5">
+		  <select id="category">
+			<option value="">전체 카테고리 보기</option>
+			<option value="컴퓨터">컴퓨터</option>
+			<option value="카메라">카메라</option>
+			<option value="자동차">자동차</option>
+			</select>
+			<input type="text" id="keyword" 
+			            placeholder="검색어를 입력하세요.">
+		  </td>
+		</tr>
+		<tr>
+		  <th>번호</th>
+		  <th>상태</th>
+		  <th>카테고리</th>
+		  <th style="width:300px;">제목</th>
+		  <th>판매가격</th>
+		  <th>작성자</th>
+		  <th>작성일</th>
+		</tr>
+	</thead>
+	<tbody id="tbody">
+	  <!-- 글목록 출력 영역 -->
+	</tbody>
+	</table>
 
 
 

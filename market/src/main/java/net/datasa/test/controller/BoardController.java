@@ -21,6 +21,16 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("board")
 public class BoardController {
+	//게시판 처리 서비스
+    private final BoardService boardService;
+    /**
+    * 글목록으로 이동
+    * @return 글목록 HTML 파일
+    */
+    @GetMapping("list")
+    public String list() {
+    	return "board/list";
+    }
 
    
 }

@@ -11,8 +11,8 @@ import java.util.List;
  * 리플 관련 repository
  */
 
-//@Repository
-//public interface ReplyRepository extends JpaRepository<ReplyEntity, Integer> {
-//
-//
-//}
+@Repository
+public interface ReplyRepository extends JpaRepository<ReplyEntity, Integer> {
+
+
+}

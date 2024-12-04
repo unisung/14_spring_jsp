@@ -12,8 +12,8 @@ import java.util.List;
  * 게시판 관련 repository
  */
 
-//@Repository
-//public interface BoardRepository extends JpaRepository<BoardEntity, Integer> {
-//
-//
-//}
+@Repository
+public interface BoardRepository extends JpaRepository<BoardEntity, Integer> {
+
+
+}
