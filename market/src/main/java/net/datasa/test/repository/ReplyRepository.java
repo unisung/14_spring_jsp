@@ -12,7 +12,8 @@ import java.util.List;
  */
 
 @Repository
-public interface ReplyRepository extends JpaRepository<ReplyEntity, Integer> {
+public interface ReplyRepository 
+ extends JpaRepository<ReplyEntity, Integer> {
 
 
 }
