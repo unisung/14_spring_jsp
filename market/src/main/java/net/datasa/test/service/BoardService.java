@@ -36,7 +36,8 @@ public class BoardService {
     	
     	for(BoardEntity entity : entityList) {
     		BoardDTO dto = BoardDTO.builder()
-    				.boardNum(entity.getBoardNum())
+    				.boardNum(entity.getBoardnum())
+    				
     	}
     	
     }

@@ -34,7 +34,7 @@ public class BoardEntity {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "board_num", nullable =false)
-	Integer boardnum;
+	Integer boardNum;
 	
 	//작성자 정보(외래키)
 	@ManyToOne(fetch = FetchType.LAZY) // n+1
