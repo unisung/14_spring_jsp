@@ -36,10 +36,22 @@ public class BoardService {
     	
     	for(BoardEntity entity : entityList) {
     		BoardDTO dto = BoardDTO.builder()
-    				.boardNum(entity.getBoardnum())
-    				
+    				.boardNum(entity.getBoardNum())
+    				.memberId(entity.getMember().getMemberId())
+    				.category(entity.getCategory())
+    				.title(entity.getTitle())
+                    .contents(entity.getContents())
+                    .price(entity.getPrice())
+                    .soldout(entity.getSoldout())
+                    .buyerId(entity.getBuyer() == null ?
+                    		 "" : entity.getBuyer().getMemberId())
+                    .inputDate(entity.getInputDate())
+                    .build();
+    		
+    		 dtoList.add(dto);			
     	}
     	
+    	return dtoList;
     }
     
 }
