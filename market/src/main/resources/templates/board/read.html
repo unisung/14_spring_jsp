@@ -95,7 +95,21 @@
 				}
 			});
 		}
-		function replyDelete(){}
+		//리플삭제
+		function replyDelete(){
+			let replyNum = $(this).data('replynum');
+			let boardNum = $(this).data('boardnum');
+			
+			$.ajax({
+				url:'replyDelete',
+				type: 'post',
+				data:{replyNum:replyNum, boardNum:boardNum},
+				success:function(){
+					alert('삭제되었습니다.');
+					replyList();
+				}
+			});
+		}
 	</script>
 </head>
 <body>
