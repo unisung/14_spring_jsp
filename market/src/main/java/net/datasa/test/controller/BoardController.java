@@ -51,6 +51,15 @@ public class BoardController {
     	
     	return "redirect:list";
     }
+    
+    @GetMapping("read")
+    public String read(@RequestParam("boardNum") int boardNum,
+    		           Model model) {
+    	BoardDTO boardDTO = boardService.getBoard(boardNum);
+    	
+    	model.addAttribute("board", boardDTO);
+    	return "board/read";
+    }
 
    
 }

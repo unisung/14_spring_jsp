@@ -75,4 +75,26 @@ public class BoardService {
     	
     	boardRepository.save(boardEntity);
     }
+
+	public BoardDTO getBoard(int boardNum) {
+		BoardEntity boardEntity 
+		   = boardRepository.findById(boardNum)
+		   .orElseThrow(()-> 
+		              new EntityNotFoundException("글이 없습니다."));
+		
+		BoardDTO boardDTO = BoardDTO.builder()
+				.boardNum(boardEntity.getBoardNum())
+				.memberId(boardEntity.getMember().getMemberId())
+    			.category(boardEntity.getCategory())
+    			.title(boardEntity.getTitle())
+    			.contents(boardEntity.getContents())
+    			.price(boardEntity.getPrice())
+    			.soldout(boardEntity.getSoldout())
+    			.buyerId(boardEntity.getBuyer()==null?""
+    					 :boardEntity.getBuyer().getMemberId())
+    			.inputDate(boardEntity.getInputDate())
+    			.build();
+				
+		return boardDTO;
+	}
 }
