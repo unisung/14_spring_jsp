@@ -30,10 +30,8 @@ public class BoardService {
     public List<BoardDTO> getList(String category,
     		         String keyword) {
     	List<BoardEntity> entityList 
-    	 = boardRepository.selectBoardList(category, keyword);	
-    	
+    	 = boardRepository.selectBoardList(category, keyword);	   	
     	List<BoardDTO> dtoList = new ArrayList<>();
-    	
     	for(BoardEntity entity : entityList) {
     		BoardDTO dto = BoardDTO.builder()
     				.boardNum(entity.getBoardNum())
