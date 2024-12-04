@@ -39,6 +39,18 @@ public class BoardController {
     public String write() {
     	return "board/writeForm";
     }
+    
+    @PostMapping("write")
+    public String write(
+    		BoardDTO board,
+    		@AuthenticationPrincipal AuthenticatedUser user) {
+    	//로그인된 사용자 정보
+    	board.setMemberId(user.getUsername());
+    	//저장
+    	boardService.write(board);
+    	
+    	return "redirect:list";
+    }
 
    
 }

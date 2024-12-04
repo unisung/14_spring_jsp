@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import net.datasa.test.domain.dto.BoardDTO;
 import net.datasa.test.domain.entity.BoardEntity;
+import net.datasa.test.domain.entity.MemberEntity;
 import net.datasa.test.repository.BoardRepository;
 import net.datasa.test.repository.MemberRepository;
 import net.datasa.test.repository.ReplyRepository;
@@ -52,4 +54,25 @@ public class BoardService {
     	return dtoList;
     }
     
+    /**
+     * 글 저장
+     * @param boardDTO 게시글 정보
+     */
+    public void write(BoardDTO boardDTO) {
+    	MemberEntity memberEntity 
+    	= memberRepository.findById(boardDTO.getMemberId())
+    	 .orElseThrow(()
+    			-> new EntityNotFoundException("회원정보가 없습니다."));
+    	//글 정보 저장
+    	BoardEntity boardEntity = BoardEntity.builder()
+    			.member(memberEntity)
+    			.category(boardDTO.getCategory())
+    			.title(boardDTO.getTitle())
+    			.contents(boardDTO.getContents())
+    			.price(boardDTO.getPrice())
+    			.soldout(false)
+    			.build();
+    	
+    	boardRepository.save(boardEntity);
+    }
 }
