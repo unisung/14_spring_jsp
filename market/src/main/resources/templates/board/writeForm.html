@@ -6,13 +6,43 @@
 	<meta charset="UTF-8">
 	<title>게시판</title>
 	<style>
-
+		th {
+			text-align: left;
+			padding: 8px;
+			width: 80px;
+		}
+		input[type="text"], select {
+			width: 250px;
+		}
+		textarea {
+			width: 250px;
+			height: 100px;
+			resize: none;
+		}
 	</style>
 	<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
 	<script>
 		$(document).ready(function() {
-			
-
+			$('#writeForm').submit(function(){
+				if($('#category').val()==''){
+					alert('카테고리를 선택하세요.');
+					return false;
+				}
+				if($('#title').val()==''){
+					alert('타이틀을 입력하세요.');
+					return false;
+				}
+				if($('#contents').val()==''){
+					alert('글내용을 입력하세요.');
+					return false;
+				}
+				let price = $('#price').val();
+				if(price =='' || isNaN(price)){
+					alert('가격을 숫자로 입력하세요');
+					return false;
+				}
+				return true;
+			});
 		});
 	</script>
 </head>
