@@ -40,10 +40,7 @@ public class BoardRestController {
 	(@RequestParam("category") String category,
 	 @RequestParam("keyword") String keyword
 	) {
-		List<BoardDTO> list 
-		  = boardService.getList(category, keyword);
-		
-		return ResponseEntity.ok(list);//status-200, 결과값-list		
+			
 	}
 	
 	/**
@@ -54,9 +51,7 @@ public class BoardRestController {
 	@PostMapping("replyWrite")
 	public void replyWrite(ReplyDTO replyDTO,
 			@AuthenticationPrincipal AuthenticatedUser user) {
-		replyDTO.setMemberId(user.getUsername());
 		
-		boardService.replyWrite(replyDTO);
 	}
 	
 	/**
@@ -66,10 +61,7 @@ public class BoardRestController {
      */
 	@GetMapping("replyList")
 	public ResponseEntity<?> getReplyList(@RequestParam("boardNum") int boardNum){
-		List<ReplyDTO> replyList 
-			= boardService.getReplyList(boardNum);
 		
-		return ResponseEntity.ok(replyList);
 	}
 	
 	/**
