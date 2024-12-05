@@ -81,9 +81,7 @@ public class BoardRestController {
 	public void replyDelete(ReplyDTO replyDTO,
 			@AuthenticationPrincipal AuthenticatedUser user){
 		
-		replyDTO.setMemberId(user.getUsername());
 		
-		boardService.replyDelete(replyDTO);
 	}
 
 	
